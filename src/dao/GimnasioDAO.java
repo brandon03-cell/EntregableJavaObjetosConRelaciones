@@ -36,6 +36,10 @@ public class GimnasioDAO {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Gimnasio g = em.find(Gimnasio.class, id);
-
+        if (g != null) {
+            em.remove(g);
+        }
+        em.getTransaction().commit();
+        em.close();
     }
 }
