@@ -84,4 +84,14 @@ public class GimnasioDAO {
         em.close();
         return lista;
     }
+
+    public Gimnasio obtenerGimnasioMasBaratoCiudadxd(String ciudad) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where g.ciudad = :ciudad order by g.cuotaMensual asc", Gimnasio.class);
+        query.setParameter("ciudad", ciudad);
+        query.setMaxResults(1);
+        Gimnasio g = query.getSingleResult();
+        em.close();
+        return g;
+    }
 }
