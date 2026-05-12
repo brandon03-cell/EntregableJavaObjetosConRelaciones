@@ -2,6 +2,7 @@ package dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import modelo.Gimnasio;
 import modelo.Socio;
 
 public class SocioDAO {
@@ -38,6 +39,19 @@ public class SocioDAO {
         Socio s = em.find(Socio.class, id);
         if (s != null) {
             em.remove(s);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void asignarSocio(int socioId, int gimnasioId) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Socio s = em.find(Socio.class, socioId);
+        Gimnasio g = em.find(Gimnasio.class, gimnasioId);
+        if (s != null &&  g != null) {
+            s.getGimnasios().add(g);
+            g.getSocios().add(s);
         }
         em.getTransaction().commit();
         em.close();
