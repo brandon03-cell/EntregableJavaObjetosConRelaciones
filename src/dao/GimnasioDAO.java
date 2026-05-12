@@ -59,4 +59,9 @@ public class GimnasioDAO {
         em.close();
         return lista;
     }
+
+    public List<Object[]> obtenerNumSociosGimnasio() {
+        EntityManager em = emf.createEntityManager();
+        String jpql =
+    }
 }
