@@ -56,4 +56,17 @@ public class SocioDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void borrarSocioDeGimnasio(int socioId, int gimnasioId) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Socio s = em.find(Socio.class, socioId);
+        Gimnasio g = em.find(Gimnasio.class, gimnasioId);
+        if (s != null && g != null) {
+            s.getGimnasios().remove(g);
+            g.getSocios().remove(s);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
 }
