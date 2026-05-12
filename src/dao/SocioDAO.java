@@ -102,4 +102,12 @@ public class SocioDAO {
         em.close();
         return lista;
     }
+
+    public List<Socio> obtenerTodosSocios() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Socio> query = em.createQuery("select s from Socio s", Socio.class);
+        List<Socio> lista = query.getResultList();
+        em.close();
+        return lista;
+    }
 }

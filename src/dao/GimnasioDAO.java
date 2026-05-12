@@ -94,4 +94,12 @@ public class GimnasioDAO {
         em.close();
         return g;
     }
+
+    public List<Gimnasio> obtenerTodosGimnasios() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g", Gimnasio.class);
+        List<Gimnasio> lista = query.getResultList();
+        em.close();
+        return lista;
+    }
 }

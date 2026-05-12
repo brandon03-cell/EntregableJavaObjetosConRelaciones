@@ -67,7 +67,7 @@ public class Socio {
 
     @Override
     public String toString() {
-        return "El socio " + this.getNombreCompleto() + " tiene " + this.getEdad() + "años y " +
+        return "El socio " + this.getNombreCompleto() + " tiene " + this.getEdad() + " años y " +
                 (this.isVip() ? "es Vip" : "no es Vip");
     }
 }
