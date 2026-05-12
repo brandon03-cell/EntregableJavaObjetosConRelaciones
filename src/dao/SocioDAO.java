@@ -94,4 +94,12 @@ public class SocioDAO {
         em.close();
         return media;
     }
+
+    public List<Socio> obtenerSociosSinGimnasio() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Socio> query = em.createQuery("select s from Socio s where s.gimnasios is empty", Socio.class);
+        List<Socio> lista = query.getResultList();
+        em.close();
+        return lista;
+    }
 }
