@@ -12,60 +12,80 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Gimnasio.odb");
         GimnasioDAO gymDAO = new GimnasioDAO(emf);
         SocioDAO socioDAO = new SocioDAO(emf);
-        /*
-        socioDAO.asignarSocio(11, 1);
-        socioDAO.asignarSocio(11, 3);
-        socioDAO.asignarSocio(11, 5);
-        socioDAO.asignarSocio(11, 8);
-        socioDAO.asignarSocio(11, 10);
-        socioDAO.asignarSocio(12, 2);
-        socioDAO.asignarSocio(12, 4);
-        socioDAO.asignarSocio(12, 9);
-        socioDAO.asignarSocio(13, 2);
-        socioDAO.asignarSocio(13, 4);
-        socioDAO.asignarSocio(13, 10);
-        socioDAO.asignarSocio(14, 1);
-        socioDAO.asignarSocio(14, 2);
-        socioDAO.asignarSocio(14, 3);
-        socioDAO.asignarSocio(14, 4);
-        socioDAO.asignarSocio(14, 5);
-        socioDAO.asignarSocio(15, 6);
-        socioDAO.asignarSocio(15, 7);
-        socioDAO.asignarSocio(15, 8);
-        socioDAO.asignarSocio(16, 1);
-        socioDAO.asignarSocio(16, 6);
-        socioDAO.asignarSocio(16, 9);
-        socioDAO.asignarSocio(17, 2);
-        socioDAO.asignarSocio(17, 4);
-        socioDAO.asignarSocio(17, 7);
-        socioDAO.asignarSocio(18, 1);
-        socioDAO.asignarSocio(18, 3);
-        socioDAO.asignarSocio(18, 5);
-        socioDAO.asignarSocio(19, 6);
-        socioDAO.asignarSocio(19, 10);
 
-        */
+        /*
+        socioDAO.asignarSocio(1, 1);
+        socioDAO.asignarSocio(1, 3);
+        socioDAO.asignarSocio(1, 5);
+        socioDAO.asignarSocio(1, 8);
+        socioDAO.asignarSocio(1, 10);
+        socioDAO.asignarSocio(2, 2);
+        socioDAO.asignarSocio(2, 4);
+        socioDAO.asignarSocio(2, 9);
+        socioDAO.asignarSocio(3, 2);
+        socioDAO.asignarSocio(3, 4);
+        socioDAO.asignarSocio(3, 10);
+        socioDAO.asignarSocio(4, 1);
+        socioDAO.asignarSocio(4, 2);
+        socioDAO.asignarSocio(4, 3);
+        socioDAO.asignarSocio(4, 4);
+        socioDAO.asignarSocio(4, 5);
+        socioDAO.asignarSocio(5, 6);
+        socioDAO.asignarSocio(5, 7);
+        socioDAO.asignarSocio(5, 8);
+        socioDAO.asignarSocio(6, 1);
+        socioDAO.asignarSocio(6, 6);
+        socioDAO.asignarSocio(6, 9);
+        socioDAO.asignarSocio(7, 2);
+        socioDAO.asignarSocio(7, 4);
+        socioDAO.asignarSocio(7, 7);
+        socioDAO.asignarSocio(8, 1);
+        socioDAO.asignarSocio(8, 3);
+        socioDAO.asignarSocio(8, 5);
+        socioDAO.asignarSocio(9, 6);
+        socioDAO.asignarSocio(9, 10);
+        socioDAO.asignarSocio(10, 5);
+        socioDAO.asignarSocio(10, 8);
+         */
+
         Gimnasio gymProMax4Kxd = new Gimnasio("Gimnasio Franquista", "CEI", 67.69);
         Socio socioProMax = new Socio("Abraham Lincoln", 56, true);
         gymDAO.insertarGimnasio(gymProMax4Kxd);
         socioDAO.insertarSocio(socioProMax);
         int gId = gymProMax4Kxd.getId();
         int sId = socioProMax.getId();
+        System.out.println("\n===================================================================================================");
+        System.out.println("    Estos son el Gym y Socio de prueba para que los métodos de insercción y borrado sean visibles");
+        System.out.println("===================================================================================================\n");
         System.out.println("Nuevo gym con id: " + gId + ". Y nuevo socio con id: " + sId);
-        System.out.println("Asignando socio al gym pa q haga baje de peso aunque esté en el más allá");
+        System.out.println("Asignando socio al gym pa q baje de peso aunque esté en el más allá");
         socioDAO.asignarSocio(sId, gId);
-        List<Gimnasio> susGyms = socioDAO.obtenerGimnasiosSocio(sId);
-        System.out.println("El socio " + socioProMax.getNombreCompleto() + " está en: " + susGyms);
+        System.out.println("El socio " + socioProMax.getNombreCompleto() + " está en: " + gymProMax4Kxd.getNombre());
         socioDAO.borrarSocioDeGimnasio(sId, gId);
         socioDAO.borrarSocio(sId);
         gymDAO.borrarGimnasio(gId);
 
-        System.out.println("\nEsto es simplemente para ver que están todos los datos de la base de datos");
+        System.out.println("\n===================================================================================================");
+        System.out.println("                                     Métodos de GimnasioDAO");
+        System.out.println("===================================================================================================\n");
+
+        List<Socio> obtenerSociosGimnasio = gymDAO.obtenerSociosGimnasio(3);
+        System.out.println("Los socios de ese gimnasio son: ");
+        for (Socio socio : obtenerSociosGimnasio) {
+            System.out.println(socio.getNombreCompleto());
+        }
+
+
+        System.out.println("\n===================================================================================================");
+        System.out.println("         Esto es simplemente para ver que están todos los datos de la base de datos");
+        System.out.println("===================================================================================================\n");
         List<Gimnasio> todosLosGimnasios = gymDAO.obtenerTodosGimnasios();
         for (Gimnasio g : todosLosGimnasios) {
             System.out.println(g);
         }
-        System.out.println("\nEstos son los Socios");
+        System.out.println("\n===================================================================================================");
+        System.out.println("                                    Estos son los Socios");
+        System.out.println("===================================================================================================\n");
         List<Socio> todosLosSocios = socioDAO.obtenerTodosSocios();
         for (Socio socio : todosLosSocios) {
             System.out.println(socio);
