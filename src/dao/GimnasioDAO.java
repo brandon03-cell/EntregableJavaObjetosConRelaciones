@@ -61,17 +61,25 @@ public class GimnasioDAO {
         return lista;
     }
 
-    public List<Gimnasio> obtenerNumSociosGimnasio() {
+    public List<Object[]> obtenerNumSociosGimnasio() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where size(g.socios) < 100", Gimnasio.class);
-        List<Gimnasio> lista = query.getResultList();
+        TypedQuery<Object[]> query = em.createQuery("select g.nombre, count(s) from Gimnasio g left join g.socios s group by g.nombre", Object[].class);
+        List<Object[]> resultado = query.getResultList();
         em.close();
-        return lista;
+        return resultado;
     }
 
     public List<Gimnasio> obtenerGimnasiosMenosDe10Socios() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where size(g.socios) < 10", Gimnasio.class);
+        List<Gimnasio> lista = query.getResultList();
+        em.close();
+        return lista;
+    }
+
+    public List<Gimnasio> obtener5GimnasiosCuotaAlta() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g order by g.cuotaMensual desc", Gimnasio.class);
         List<Gimnasio> lista = query.getResultList();
         em.close();
         return lista;
