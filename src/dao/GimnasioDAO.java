@@ -86,6 +86,7 @@ public class GimnasioDAO {
     public List<Gimnasio> obtener5GimnasiosCuotaAlta() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g order by g.cuotaMensual desc", Gimnasio.class);
+        query.setMaxResults(5);
         List<Gimnasio> lista = query.getResultList();
         em.close();
         return lista;

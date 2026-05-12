@@ -82,9 +82,13 @@ public class Main {
         });
         System.out.println("\nMétodo para oobtener los gimnasios con menos de 10 socios");
         List<Gimnasio> obtenerGimnasiosMenosDe10Socios = gymDAO.obtenerGimnasiosMenosDe10Socios();
-
         for (Gimnasio g : obtenerGimnasiosMenosDe10Socios) {
             System.out.println(g.getNombre());
+        }
+        System.out.println("\nMétodo para obtener los 5 gimnasios con la cuota más alta");
+        List<Gimnasio> topGyms = gymDAO.obtener5GimnasiosCuotaAlta();
+        for (Gimnasio g : topGyms) {
+            System.out.println(g.getNombre() + " - Cuota: " + g.getCuotaMensual() + "€");
         }
 
 
