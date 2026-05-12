@@ -31,4 +31,15 @@ public class SocioDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void borrarSocio(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Socio s = em.find(Socio.class, id);
+        if (s != null) {
+            em.remove(s);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
 }
