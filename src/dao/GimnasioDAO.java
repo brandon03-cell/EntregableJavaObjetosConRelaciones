@@ -4,10 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import modelo.Gimnasio;
 
-public class GimansioDAO {
+public class GimnasioDAO {
     EntityManagerFactory emf;
 
-    public GimansioDAO(EntityManagerFactory emf) {
+    public GimnasioDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
@@ -29,6 +29,13 @@ public class GimansioDAO {
             g.setCuotaMensual(cuota);
         }
         em.getTransaction().commit();
-        em.close;
+        em.close();
+    }
+
+    public void borrarGimnasio(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Gimnasio g = em.find(Gimnasio.class, id);
+
     }
 }
