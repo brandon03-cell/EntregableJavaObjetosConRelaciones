@@ -13,11 +13,52 @@ public class Main {
         GimnasioDAO gymDAO = new GimnasioDAO(emf);
         SocioDAO socioDAO = new SocioDAO(emf);
         /*
+        socioDAO.asignarSocio(11, 1);
+        socioDAO.asignarSocio(11, 3);
+        socioDAO.asignarSocio(11, 5);
+        socioDAO.asignarSocio(11, 8);
+        socioDAO.asignarSocio(11, 10);
+        socioDAO.asignarSocio(12, 2);
+        socioDAO.asignarSocio(12, 4);
+        socioDAO.asignarSocio(12, 9);
+        socioDAO.asignarSocio(13, 2);
+        socioDAO.asignarSocio(13, 4);
+        socioDAO.asignarSocio(13, 10);
+        socioDAO.asignarSocio(14, 1);
+        socioDAO.asignarSocio(14, 2);
+        socioDAO.asignarSocio(14, 3);
+        socioDAO.asignarSocio(14, 4);
+        socioDAO.asignarSocio(14, 5);
+        socioDAO.asignarSocio(15, 6);
+        socioDAO.asignarSocio(15, 7);
+        socioDAO.asignarSocio(15, 8);
+        socioDAO.asignarSocio(16, 1);
+        socioDAO.asignarSocio(16, 6);
+        socioDAO.asignarSocio(16, 9);
+        socioDAO.asignarSocio(17, 2);
+        socioDAO.asignarSocio(17, 4);
+        socioDAO.asignarSocio(17, 7);
+        socioDAO.asignarSocio(18, 1);
+        socioDAO.asignarSocio(18, 3);
+        socioDAO.asignarSocio(18, 5);
+        socioDAO.asignarSocio(19, 6);
+        socioDAO.asignarSocio(19, 10);
+
+        */
         Gimnasio gymProMax4Kxd = new Gimnasio("Gimnasio Franquista", "CEI", 67.69);
+        Socio socioProMax = new Socio("Abraham Lincoln", 56, true);
         gymDAO.insertarGimnasio(gymProMax4Kxd);
-        int idDinamico = gymProMax4Kxd.getId();
-        gymDAO.borrarGimnasio(idDinamico);
-         */
+        socioDAO.insertarSocio(socioProMax);
+        int gId = gymProMax4Kxd.getId();
+        int sId = socioProMax.getId();
+        System.out.println("Nuevo gym con id: " + gId + ". Y nuevo socio con id: " + sId);
+        System.out.println("Asignando socio al gym pa q haga baje de peso aunque esté en el más allá");
+        socioDAO.asignarSocio(sId, gId);
+        List<Gimnasio> susGyms = socioDAO.obtenerGimnasiosSocio(sId);
+        System.out.println("El socio " + socioProMax.getNombreCompleto() + " está en: " + susGyms);
+        socioDAO.borrarSocioDeGimnasio(sId, gId);
+        socioDAO.borrarSocio(sId);
+        gymDAO.borrarGimnasio(gId);
 
         System.out.println("\nEsto es simplemente para ver que están todos los datos de la base de datos");
         List<Gimnasio> todosLosGimnasios = gymDAO.obtenerTodosGimnasios();
