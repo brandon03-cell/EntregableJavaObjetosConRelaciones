@@ -18,4 +18,17 @@ public class SocioDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void actualizarSocio(int id, String nombre, int edad, boolean vip) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Socio s = em.find(Socio.class, id);
+        if (s != null) {
+            s.setNombreCompleto(nombre);
+            s.setEdad(edad);
+            s.setVip(vip);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
 }
