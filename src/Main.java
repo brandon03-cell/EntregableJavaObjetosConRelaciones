@@ -8,6 +8,10 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Gimnasio.odb");
         GimnasioDAO gymDAO = new GimnasioDAO(emf);
+        /*
         Gimnasio gymProMax4Kxd = new Gimnasio("Gimnasio Franquista", "CEI", 67.67);
+        gymDAO.insertarGimnasio(gymProMax4Kxd);
+
+         */
     }
 }
