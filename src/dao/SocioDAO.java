@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManagerFactory;
 import modelo.Gimnasio;
 import modelo.Socio;
 
+import java.util.List;
+
 public class SocioDAO {
     private EntityManagerFactory emf;
 
@@ -68,5 +70,19 @@ public class SocioDAO {
         }
         em.getTransaction().commit();
         em.close();
+    }
+
+    public List<Gimnasio> obtenerGimnasiosSocio(int id) {
+        EntityManager em = emf.createEntityManager();
+        Socio s = em.find(Socio.class, id);
+        List<Gimnasio> lista = null;
+        if (s != null) {
+            lista = s.getGimnasios();
+            if (lista != null) {
+                lista.size();
+            }
+        }
+        em.close();
+        return lista;
     }
 }
