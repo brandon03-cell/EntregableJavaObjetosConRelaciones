@@ -80,8 +80,15 @@ public class Main {
         estadisticas.forEach((nombre, total) -> {
             System.out.println("Gimnasio: " + nombre + " | Socios: " + total);
         });
+        System.out.println("\nMétodo para oobtener los gimnasios con menos de 10 socios");
+        List<Gimnasio> obtenerGimnasiosMenosDe10Socios = gymDAO.obtenerGimnasiosMenosDe10Socios();
+
+        for (Gimnasio g : obtenerGimnasiosMenosDe10Socios) {
+            System.out.println(g.getNombre());
+        }
 
 
+        /*
         System.out.println("\n===================================================================================================");
         System.out.println("         Esto es simplemente para ver que están todos los datos de la base de datos");
         System.out.println("===================================================================================================\n");
@@ -96,7 +103,7 @@ public class Main {
         for (Socio socio : todosLosSocios) {
             System.out.println(socio);
         }
-        /*
+
         gymDAO.insertarGimnasio(new Gimnasio("Iron Temple", "Madrid", 45.99));
         gymDAO.insertarGimnasio(new Gimnasio("Sparta Fitness", "Barcelona", 29.90));
         gymDAO.insertarGimnasio(new Gimnasio("Yoga & Flow", "Valencia", 60.00));

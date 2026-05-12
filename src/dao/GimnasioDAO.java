@@ -77,7 +77,7 @@ public class GimnasioDAO {
 
     public List<Gimnasio> obtenerGimnasiosMenosDe10Socios() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where size(g.socios) < 10", Gimnasio.class);
+        TypedQuery<Gimnasio> query = em.createQuery("SELECT g FROM Gimnasio g LEFT JOIN g.socios s GROUP BY g HAVING COUNT(s) < 10", Gimnasio.class);
         List<Gimnasio> lista = query.getResultList();
         em.close();
         return lista;
