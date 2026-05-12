@@ -90,7 +90,26 @@ public class Main {
         for (Gimnasio g : topGyms) {
             System.out.println(g.getNombre() + " - Cuota: " + g.getCuotaMensual() + "€");
         }
+        System.out.println("\nMétodo para obtener el Gimnasio de una ciudad, dada por parámetro, con la cuota más barata");
+        Gimnasio barato = gymDAO.obtenerGimnasioMasBaratoCiudadxd("Madrid");
+        if (barato != null) {
+            System.out.println("El gimnasio más económico es: " + barato.getNombre() + " con una cuota de " + barato.getCuotaMensual() + "€");
+        } else {
+            System.out.println("No se han encontrado gimnasios en esa ciudad.");
+        }
 
+        System.out.println("\n===================================================================================================");
+        System.out.println("                                     Métodos de SocioDAO");
+        System.out.println("===================================================================================================\n");
+        System.out.println("\nMétodo para obtener los Gimnasio a los que está apuntado un socio concreto, según su ID");
+        List<Gimnasio> gyms = socioDAO.obtenerGimnasiosSocio(1);
+        if (gyms != null) {
+            for (Gimnasio g : gyms) {
+                System.out.println("Gimnasio: " + g.getNombre());
+            }
+        } else {
+            System.out.println("No se encontró el socio o no tiene gimnasios.");
+        }
 
         /*
         System.out.println("\n===================================================================================================");

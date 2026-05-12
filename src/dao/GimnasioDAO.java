@@ -94,12 +94,12 @@ public class GimnasioDAO {
 
     public Gimnasio obtenerGimnasioMasBaratoCiudadxd(String ciudad) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where g.ciudad = :ciudad order by g.cuotaMensual asc", Gimnasio.class);
+        TypedQuery<Gimnasio> query = em.createQuery("SELECT g FROM Gimnasio g WHERE g.ciudad = :ciudad ORDER BY g.cuotaMensual ASC", Gimnasio.class);
         query.setParameter("ciudad", ciudad);
         query.setMaxResults(1);
-        Gimnasio g = query.getSingleResult();
+        List<Gimnasio> resultados = query.getResultList();
         em.close();
-        return g;
+        return resultados.isEmpty() ? null : resultados.get(0);
     }
 
     public List<Gimnasio> obtenerTodosGimnasios() {
