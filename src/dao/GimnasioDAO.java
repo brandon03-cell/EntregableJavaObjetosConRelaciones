@@ -3,6 +3,9 @@ package dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import modelo.Gimnasio;
+import modelo.Socio;
+
+import java.util.List;
 
 public class GimnasioDAO {
     EntityManagerFactory emf;
@@ -41,5 +44,19 @@ public class GimnasioDAO {
         }
         em.getTransaction().commit();
         em.close();
+    }
+
+    public List<Socio> obtenerSociosGimnasio(int id) {
+        EntityManager em = emf.createEntityManager();
+        Gimnasio g = em.find(Gimnasio.class, id);
+        List<Socio> lista = null;
+        if (g != null) {
+            lista = g.getSocios();
+            if (lista != null) {
+                lista.size();
+            }
+        }
+        em.close();
+        return lista;
     }
 }
