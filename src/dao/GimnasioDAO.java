@@ -6,7 +6,9 @@ import jakarta.persistence.TypedQuery;
 import modelo.Gimnasio;
 import modelo.Socio;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GimnasioDAO {
     EntityManagerFactory emf;
@@ -61,12 +63,16 @@ public class GimnasioDAO {
         return lista;
     }
 
-    public List<Object[]> obtenerNumSociosGimnasio() {
+    public Map<String, Long> obtenerNumSociosGimnasio() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Object[]> query = em.createQuery("select g.nombre, count(s) from Gimnasio g left join g.socios s group by g.nombre", Object[].class);
         List<Object[]> resultado = query.getResultList();
+        Map<String, Long> mapa = new HashMap<>();
+        for (Object[] fila : resultado) {
+            mapa.put((String) fila[0], (Long) fila[1]);
+        }
         em.close();
-        return resultado;
+        return mapa;
     }
 
     public List<Gimnasio> obtenerGimnasiosMenosDe10Socios() {

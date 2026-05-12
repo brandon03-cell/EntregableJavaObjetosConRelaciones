@@ -6,6 +6,7 @@ import modelo.Gimnasio;
 import modelo.Socio;
 
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -68,12 +69,17 @@ public class Main {
         System.out.println("\n===================================================================================================");
         System.out.println("                                     Métodos de GimnasioDAO");
         System.out.println("===================================================================================================\n");
-
+        System.out.println("Método para obtener los socios de un gimnasio concreto");
         List<Socio> obtenerSociosGimnasio = gymDAO.obtenerSociosGimnasio(3);
         System.out.println("Los socios de ese gimnasio son: ");
         for (Socio socio : obtenerSociosGimnasio) {
             System.out.println(socio.getNombreCompleto());
         }
+        System.out.println("\nMétodo para obtener el número de socios inscritos a cada gimnasio");
+        Map<String, Long> estadisticas = gymDAO.obtenerNumSociosGimnasio();
+        estadisticas.forEach((nombre, total) -> {
+            System.out.println("Gimnasio: " + nombre + " | Socios: " + total);
+        });
 
 
         System.out.println("\n===================================================================================================");
