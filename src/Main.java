@@ -56,15 +56,19 @@ public class Main {
         int gId = gymProMax4Kxd.getId();
         int sId = socioProMax.getId();
         System.out.println("\n===================================================================================================");
-        System.out.println("    Estos son el Gym y Socio de prueba para que los métodos de insercción y borrado sean visibles");
+        System.out.println("          Estos son el Gym y Socio de prueba para que los métodos  sean visibles");
         System.out.println("===================================================================================================\n");
         System.out.println("Nuevo gym con id: " + gId + ". Y nuevo socio con id: " + sId);
         System.out.println("Asignando socio al gym pa q baje de peso aunque esté en el más allá");
         socioDAO.asignarSocio(sId, gId);
         System.out.println("El socio " + socioProMax.getNombreCompleto() + " está en: " + gymProMax4Kxd.getNombre());
+        System.out.println("\nActualizados");
+        gymDAO.actualizarGimnasio(gId, "Gimnasio de chill", "Albacete", 80.0);
+        socioDAO.actualizarSocio(sId, "Java Fresno🥀", 21, true);
         socioDAO.borrarSocioDeGimnasio(sId, gId);
         socioDAO.borrarSocio(sId);
         gymDAO.borrarGimnasio(gId);
+        System.out.println("Ciclo de creación, actualización y eliminación completado chaval SUUUUUUUUUUUUU");
 
         System.out.println("\n===================================================================================================");
         System.out.println("                                     Métodos de GimnasioDAO");
