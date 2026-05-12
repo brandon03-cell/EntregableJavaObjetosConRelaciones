@@ -101,7 +101,7 @@ public class Main {
         System.out.println("\n===================================================================================================");
         System.out.println("                                     Métodos de SocioDAO");
         System.out.println("===================================================================================================\n");
-        System.out.println("\nMétodo para obtener los Gimnasio a los que está apuntado un socio concreto, según su ID");
+        System.out.println("Método para obtener los Gimnasio a los que está apuntado un socio concreto, según su ID");
         List<Gimnasio> gyms = socioDAO.obtenerGimnasiosSocio(1);
         if (gyms != null) {
             for (Gimnasio g : gyms) {
@@ -109,6 +109,17 @@ public class Main {
             }
         } else {
             System.out.println("No se encontró el socio o no tiene gimnasios.");
+        }
+        System.out.println("\nMétodo para obtener la media de edad de todos los socios");
+        System.out.println("Nah, la media es: " + socioDAO.obtenerMediaEdadSocios());
+        System.out.println("\nMétodo para obtener los Socio que no están inscritos en ningún gimnasio");
+        List<Socio> vagos = socioDAO.obtenerSociosSinGimnasio();
+        if (vagos.isEmpty()) {
+            System.out.println("Todos los socios están apuntados a algún gimnasio");
+        } else {
+            for (Socio s : vagos) {
+                System.out.println("- " + s.getNombreCompleto());
+            }
         }
 
         /*
