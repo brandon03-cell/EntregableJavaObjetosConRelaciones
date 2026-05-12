@@ -2,6 +2,7 @@ package dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import modelo.Gimnasio;
 import modelo.Socio;
 
@@ -60,8 +61,11 @@ public class GimnasioDAO {
         return lista;
     }
 
-    public List<Object[]> obtenerNumSociosGimnasio() {
+    public List<Gimnasio> obtenerNumSociosGimnasio() {
         EntityManager em = emf.createEntityManager();
-        String jpql =
+        TypedQuery<Gimnasio> query = em.createQuery("select g from Gimnasio g where size(g.socios) < 100", Gimnasio.class);
+        List<Gimnasio> lista = query.getResultList();
+        em.close();
+        return lista;
     }
 }
