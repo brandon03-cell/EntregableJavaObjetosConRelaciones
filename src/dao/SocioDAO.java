@@ -2,6 +2,7 @@ package dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import modelo.Gimnasio;
 import modelo.Socio;
 
@@ -84,5 +85,13 @@ public class SocioDAO {
         }
         em.close();
         return lista;
+    }
+
+    public double obtenerMediaEdadSocios() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Double> query = em.createQuery("select avg(s.edad) from Socio s", Double.class);
+        Double media = query.getSingleResult();
+        em.close();
+        return media;
     }
 }
