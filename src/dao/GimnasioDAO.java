@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GimnasioDAO {
-    EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
     public GimnasioDAO(EntityManagerFactory emf) {
         this.emf = emf;
